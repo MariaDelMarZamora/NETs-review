@@ -211,7 +211,7 @@ calc_cscale <- function(df, f, flab, fixed =T) {
   }
 }
 
-heatbar <- function(df,f,step=1, fixed=T, text=F, numeric=F) {
+heatbar <- function(df,f,step=1, fixed=T, text=F, numeric=F, width = 0.6) {
   flab <- if (f=="pcnt") "% of Studies" else "Number of Studies" 
   #df <- df[df[[f]]>0,]
   df <- df %>%
@@ -257,7 +257,7 @@ heatbar <- function(df,f,step=1, fixed=T, text=F, numeric=F) {
       data=df,
       aes_string(x=xvar, y=step, fill=f),
       stat="identity",
-      width=0.6,
+      width=width,
       color=NA
     ) +
     geom_bar(
@@ -266,7 +266,7 @@ heatbar <- function(df,f,step=1, fixed=T, text=F, numeric=F) {
       stat = "identity",
       fill=NA,
       color="grey22",
-      width=0.6
+      width=width
     ) +
     cscale +
     guides(fill = guide_colourbar(reverse = TRUE))
